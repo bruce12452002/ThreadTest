@@ -12,6 +12,7 @@ public class ReentrantLockTest1 {
 
         try {
             // tryLock 為試著在指定的時間內鎖看看，可用來解決死鎖的問題
+            // 也就是可以控制一直拿不到鎖的情形，拿到或拿不到可以做某些事情
             locked = lock.tryLock(5, TimeUnit.MILLISECONDS);
             TimeUnit.SECONDS.sleep(1);
             System.out.println(locked);
