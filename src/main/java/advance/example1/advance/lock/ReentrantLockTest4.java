@@ -13,6 +13,9 @@ public class ReentrantLockTest4<T> {
         // 最多 10 個元素
         // 不可使用 if，因為 wait() 往下會 add，但有可能還沒 add 時，另一個生產者執行緒已經 wait 並 add 了，這時就超過 10 了
         // 使用 while 會再判斷一次，然後看要繼續 wait 或 add，可以解決這個問題
+        // 所以綜上所述，只有一個消費者和生產者，不會有這個問題
+        // 以上就算將 notifyAll 改成 notify 結果也是一樣，原因不清楚，但官方 API 有說明，有可能不用 notify|notifyAll 確會喚醒
+        // 這個名稱叫假喚醒，推薦用 while 代替 if，但沒說原因
         while (list.size() == 10) {
             try {
                 this.wait();
