@@ -1,4 +1,4 @@
-package advance.example1.advance.lock;
+package advance.example1.lock;
 
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.Lock;

@@ -1,4 +1,4 @@
-package advance.example1.advance.lock;
+package advance.example1.lock;
 
 import java.util.LinkedList;
 import java.util.concurrent.TimeUnit;
