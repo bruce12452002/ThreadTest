@@ -7,10 +7,9 @@ import java.util.Vector;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.CountDownLatch;
 
-// ConcurrentSkipListMap 高併發且排序
 // CopyOnWriteArrayList 複製一份出來，然後指針指到新的地方，讀多寫少可用；寫多雖然也能用，但效能太差
 // Collections.synchronizedXxx() 轉換成同步集合
-public class ConcurrentTest {
+public class ConcurrentTest1 {
     public static void main(String[] args) {
         int threadCount = 100;
         CountDownLatch latch = new CountDownLatch(threadCount);
@@ -35,7 +34,7 @@ public class ConcurrentTest {
 
         try {
             latch.await();
-            System.out.println(Thread.currentThread().getName() + ",size=" + list.size());
+            System.out.println("size=" + list.size());
             System.out.println(System.currentTimeMillis() - startTime);
         } catch (InterruptedException e) {
             e.printStackTrace();
