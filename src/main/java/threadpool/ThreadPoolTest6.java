@@ -1,9 +1,7 @@
 package threadpool;
 
 import java.util.concurrent.ForkJoinPool;
-import java.util.concurrent.ForkJoinTask;
 import java.util.concurrent.RecursiveTask;
-import java.util.stream.Stream;
 
 public class ThreadPoolTest6 extends RecursiveTask<Long> { // RecursiveTask 繼承 ForkJoinTask
     private long begin;
@@ -40,8 +38,16 @@ public class ThreadPoolTest6 extends RecursiveTask<Long> { // RecursiveTask 繼�
         ThreadPoolTest6 mfjt = new ThreadPoolTest6(1, 1_0000_0000L);
 
         ForkJoinPool forkJoinPool = new ForkJoinPool();
-        ForkJoinTask<Long> submit = forkJoinPool.submit(mfjt);// 可以放 ForkJoinTask、Runnable、Callable
-        System.out.println(submit.get());
+        // 方法一：使用 submit 方法
+        // ForkJoinTask<Long> fjt = forkJoinPool.submit(mfjt);// 可以放 ForkJoinTask、Runnable、Callable
+        // System.out.println(fjt.get());
+
+        // 方法二：使用 execute 方法
+        forkJoinPool.execute(mfjt); // 可以放 ForkJoinTask、Runnable
+        System.out.println(mfjt.join());
+
         System.out.println(System.currentTimeMillis() - s);
+
+        // 不錯的範例 https://vimsky.com/examples/detail/java-class-java.util.concurrent.ForkJoinPool.html
     }
 }
